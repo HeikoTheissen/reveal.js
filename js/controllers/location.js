@@ -144,6 +144,7 @@ export default class Location {
 			// API is not available.
 			if( config.history ) {
 				window.location.hash = hash;
+				window.dispatchEvent(new Event("slide"));
 			}
 			// If we're configured to reflect the current slide in the
 			// URL without pushing to history.
@@ -175,6 +176,7 @@ export default class Location {
 
 		window.history.replaceState( null, null, url );
 		this.replaceStateTimestamp = Date.now();
+		window.dispatchEvent(new Event("slide"));
 
 	}
 

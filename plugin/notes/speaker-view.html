@@ -552,6 +552,15 @@
 					upcomingSlide = document.createElement( 'iframe' );
 					upcomingSlide.setAttribute( 'width', 640 );
 					upcomingSlide.setAttribute( 'height', 512 );
+					upcomingSlide.addEventListener("load", function() {
+						upcomingSlide.contentWindow.addEventListener("slide", function() {
+							const upcomingLabel = document.querySelector(
+								"#upcoming-slide .overlay-element"
+							);
+							upcomingLabel.innerHTML =
+								"Upcoming " + upcomingSlide.contentWindow.location.hash;
+						});
+					});
 					upcomingSlide.setAttribute( 'src', upcomingURL );
 					document.querySelector( '#upcoming-slide' ).appendChild( upcomingSlide );
 
